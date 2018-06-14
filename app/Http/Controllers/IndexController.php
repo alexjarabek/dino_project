@@ -9,8 +9,14 @@ class IndexController extends Controller
 {
     public function index(){
 
-        $team = DB::table('dream-team')->get();
+        $team = DB::table('base-stats')->where('dream-team-status', 'TRUE')->get();
+        $current_stats= array();
 
-        return view('index')->with('team', $team);
+        foreach ($team as $dino){
+            $stats = DB::table($dino->lvl_stats)->where('Level', $dino->current_level)->get();
+            array_push($current_stats, $stats);
+        }
+              
+        return view('index', ['team' => $team , 'current-stats' => $current_stats]);
     }
 }
