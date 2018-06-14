@@ -14,6 +14,7 @@ class IndexController extends Controller
 
         foreach ($team as $dino){
             $stats = DB::table($dino->lvl_stats)->where('Level', $dino->current_level)->get();
+            
             array_push($current_stats, $stats);
         }
               

@@ -12,3 +12,7 @@
 */
 
 Route::get('/', 'IndexController@index');
+
+Route::get('/dino', 'DinoController@index');
+
+Route::get('/dino/{id}', 'DinoController@show');

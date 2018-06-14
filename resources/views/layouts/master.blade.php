@@ -18,16 +18,16 @@
 <nav>
     <ul class="nav">
     <li class="nav-item">
-        <a class="nav-link active" href="#">Active</a>
+        <a class="nav-link active" href="/">Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="/dino">Dino List</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="/blog">News</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <a class="nav-link" href="/blog">Blog</a>
     </li>
     </ul>
 </nav>
