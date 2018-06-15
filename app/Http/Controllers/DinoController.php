@@ -75,6 +75,10 @@ class DinoController extends Controller
         $dino->dream_team_status = False;
         $dino->current_level = 0;
 
+        $file = $request->image;
+        $name = strtolower($dino->name). '.'. $file->getClientOriginalExtension();
+        $file->move(public_path("img/dino"), $name);
+
         $dino->save();
         
         return redirect()->route('dino.show', $request->id);

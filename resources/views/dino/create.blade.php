@@ -3,7 +3,7 @@
 @section('content')
     <h1>Add new Dino</h1>
 
-    {!! Form::open(array('route'=>'dino.store')) !!}
+    {!! Form::open(array('route'=>'dino.store', 'enctype' => "multipart/form-data")) !!}
         
         <!--Form input for id-->
         {{Form::label('id', 'Number: ')}}
@@ -36,6 +36,9 @@
         <!--Form input for rarity-->
         {{Form::label('rarity', 'Rarity: ')}}
         {{Form::text('rarity', null, array('class' => 'form-control'))}}
+
+        {{Form::label('image', 'Dino Image: ')}}
+        {{Form::file('image')}}
 
         {{Form::submit('Submit', array('class' => 'btn btn-success btn-block', 'style' => 'margin-top:10px'))}}
 
