@@ -9,11 +9,7 @@ use App\Dino;
 
 class DinoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         $data = DB::table('dinos')->get();
@@ -21,22 +17,13 @@ class DinoController extends Controller
         return view('dino/index', ['data' => $data]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         return view('dino/create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         //validating the data
@@ -84,50 +71,54 @@ class DinoController extends Controller
         return redirect()->route('dino.show', $request->id);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         $dino = DB::table('dinos')->where('id', $id)->first();
-       
-        $stats = DB::table($dino->lvl_stats)->get();
 
-        return view('dino/show', ['dino' => $dino, 'stats' => $stats]);
+        $base_health = $dino->health;
+        $base_damage = $dino->damage;
+        
+        $stats = array ();
+        
+        $damage = $dino->damage;
+        $health= $dino->health;
+
+        $idx = 2;
+        while($idx<31){
+            $n_damage = $damage * 1.05;
+            $n_health = $health * 1.05;
+
+            $damage = round($n_damage);
+            $health = round($n_health);
+            $temp_array = array();
+
+            array_push($temp_array, $idx, $health, $damage);
+            array_push($stats, $temp_array);
+            $idx = $idx + 1;
+        }
+
+        return view('dino/show', [
+            'dino' => $dino, 
+            'stats' => $stats,
+            'health' => $base_health,
+            'damage' => $base_damage,
+            ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+        public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy($id)
     {
         //

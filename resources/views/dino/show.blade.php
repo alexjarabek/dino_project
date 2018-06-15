@@ -11,19 +11,25 @@
 
     <img src="/{{$dino->image}}" alt="" style="width:400px; height:400px;">
 
+    <br><br>
+   
+
     <table class="table">
         <thead>
             <th>Level</th>
             <th>Health</th>
             <th>Damage</th>
         </thead>
+        <td>1</td>
+        <td>{{$health}}</td>
+        <td>{{$damage}}</td>
 
         @foreach($stats as $stat)
-            <tbody>
-                <td>{{$stat->Level}}</td>
-                <td>{{$stat->health}}</td>
-                <td>{{$stat->damage}}</td>
-            </tbody>
+        <tbody>
+            <td>{{$stat[0]}}</td>
+            <td>{{$stat[1]}}</td>
+            <td>{{$stat[2]}}</td>
+        </tbody>
         @endforeach
     </table>
 @endsection
