@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Dino;
 
 class DinoController extends Controller
 {
@@ -14,7 +16,7 @@ class DinoController extends Controller
      */
     public function index()
     {
-        $data = DB::table('base-stats')->get();
+        $data = DB::table('dinos')->get();
 
         return view('dino/index', ['data' => $data]);
     }
@@ -26,7 +28,7 @@ class DinoController extends Controller
      */
     public function create()
     {
-        //
+        return view('dino/create');
     }
 
     /**
@@ -37,7 +39,45 @@ class DinoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validating the data
+        $this->validate($request, array(
+            'id' => 'required',
+            'name' => 'required',
+            'health' => 'required',
+            'armor' => 'required',
+            'damage' => 'required',
+            'speed' => 'required',
+            'critical' => 'required',
+            'rarity' => 'required',
+        ));
+
+        $dino = new Dino;
+
+        //Inserting the general stats of the dino
+        $dino->id = $request->id;
+        $dino->name = $request->name;
+        $dino->health = $request->health;
+        $dino->armor = $request->armor;
+        $dino->damage = $request->damage;
+        $dino->speed = $request->speed;
+        $dino->critical = $request->critical;
+        $dino->rarity = $request->rarity;
+
+        //populating the image url field
+        $url = 'img/dino/'. strtolower($dino->name) .'.png'; 
+        $dino->image = $url;
+
+        //populating lvl_stats table refrence
+        $stats = strtolower($dino->name).'_lvl';
+        $dino->lvl_stats = $stats;
+
+        //populating dream team status and current level
+        $dino->dream_team_status = False;
+        $dino->current_level = 0;
+
+        $dino->save();
+        
+        return redirect()->route('dino.show', $request->id);
     }
 
     /**
@@ -48,7 +88,7 @@ class DinoController extends Controller
      */
     public function show($id)
     {
-        $dino = DB::table('base-stats')->where('id', $id)->first();
+        $dino = DB::table('dinos')->where('id', $id)->first();
        
         $stats = DB::table($dino->lvl_stats)->get();
 

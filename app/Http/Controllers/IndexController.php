@@ -9,7 +9,7 @@ class IndexController extends Controller
 {
     public function index(){
 
-        $team = DB::table('base-stats')->where('dream-team-status', 'TRUE')->get();
+        $team = DB::table('dinos')->where('dream_team_status', 'TRUE')->get();
         $current_stats= array();
 
         foreach ($team as $dino){
