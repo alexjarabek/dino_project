@@ -6,7 +6,7 @@
                 <div class="card" style="width:18rem; float:left;">
                     <img class="card-img-top" src="{{$team[$i]->image}}" alt="">
                     <div class="card-body">
-                        <h5 class="card-title">{{$team[$i]->name}}</h5>
+                        <h5 class="card-title"><a href="/dino/{{$team[$i]->id}}">{{$team[$i]->name}}</a></h5>
                         <p>Current Level: {{$team[$i]->current_level}}</p>
                         <ul>
                             <li>Health: {{$health[$i]}}</li>
