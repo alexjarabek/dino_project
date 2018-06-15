@@ -9,7 +9,7 @@
     <p>Critical: {{$dino->critical}}%</p>
     <p>Rarity: {{$dino->rarity}}</p>
 
-    <img src="/{{$dino->image}}" alt="" style="width:400px; height:400px;">
+    <img src="/img/dino/{{strtolower($dino->name)}}.png" alt="" style="width:400px; height:400px;">
 
     <br><br>
    

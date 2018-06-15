@@ -2,9 +2,9 @@
 
 @section('content')
     <h1>The Current Dream Team</h1>
-            @for ($i = 0; $i < 3; $i++)
+            @for ($i = 0; $i < 8; $i++)
                 <div class="card" style="width:18rem; float:left;">
-                    <img class="card-img-top" src="{{$team[$i]->image}}" alt="">
+                    <img class="card-img-top" src="/img/dino/{{strtolower($team[$i]->name)}}.png" alt="">
                     <div class="card-body">
                         <h5 class="card-title"><a href="/dino/{{$team[$i]->id}}">{{$team[$i]->name}}</a></h5>
                         <p>Current Level: {{$team[$i]->current_level}}</p>

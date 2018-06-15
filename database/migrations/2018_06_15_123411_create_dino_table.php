@@ -22,10 +22,9 @@ class CreateDinoTable extends Migration
             $table->integer('speed');
             $table->integer('critical');
             $table->string('rarity', 50);
-            $table->string('lvl_stats', 50);
-            $table->string('image', 50);
             $table->string('dream_team_status', 50);
             $table->integer('current_level');
+            $table->integer('hybrid');
         });
     }
 
