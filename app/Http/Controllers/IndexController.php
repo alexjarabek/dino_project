@@ -10,14 +10,28 @@ class IndexController extends Controller
     public function index(){
 
         $team = DB::table('dinos')->where('dream_team_status', 'TRUE')->get();
-        $current_stats= array();
+        $health_a= array();
+        $damage_a= array();
 
-        foreach ($team as $dino){
-            $stats = DB::table($dino->lvl_stats)->where('Level', $dino->current_level)->get();
-            
-            array_push($current_stats, $stats);
+        foreach($team as $dino){
+            $idx = 1;
+
+            $damage = $dino->damage;
+            $health = $dino->health;
+            while($idx<$dino->current_level){
+                $health = $health * 1.05;
+                $damage = $damage * 1.05;
+                $idx ++;
+            };
+            $idx = 0;
+            array_push($health_a, round($health));
+            array_push($damage_a, round($damage));
         }
-              
-        return view('index', ['team' => $team , 'current-stats' => $current_stats]);
+
+        return view('index', [
+            'team' => $team,
+            'health' => $health_a,
+            'damage' => $damage_a
+            ]);
     }
 }

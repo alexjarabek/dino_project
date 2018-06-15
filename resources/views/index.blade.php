@@ -2,20 +2,21 @@
 
 @section('content')
     <h1>The Current Dream Team</h1>
-        @foreach($team as $dino)
-            <div class="card" style="width:18rem; float:left;">
-                <img class="card-img-top" src="{{$dino->image}}" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">{{$dino->name}}</h5>
-                    <p>Current Level: {{$dino->current_level}}/30</p>
-                    <ul>
-                        <li>Health: {{$dino->health}}</li>
-                        <li>Armor: {{$dino->armor}}%</li>
-                        <li>Damage: {{$dino->damage}}</li>
-                        <li>Speed: {{$dino->speed}}</li>
-                        <li>Critical: {{$dino->critical}}%</li>
-                    </ul>
+            @for ($i = 0; $i < 3; $i++)
+                <div class="card" style="width:18rem; float:left;">
+                    <img class="card-img-top" src="{{$team[$i]->image}}" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">{{$team[$i]->name}}</h5>
+                        <p>Current Level: {{$team[$i]->current_level}}</p>
+                        <ul>
+                            <li>Health: {{$health[$i]}}</li>
+                            <li>Armor: {{$team[$i]->armor}}%</li>
+                            <li>Damage: {{$damage[$i]}}</li>
+                            <li>Speed: {{$team[$i]->speed}}</li>
+                            <li>Critical: {{$team[$i]->critical}}%</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        @endforeach
+            @endfor
+        
 @endsection
