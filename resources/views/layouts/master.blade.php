@@ -11,31 +11,17 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="/css/master.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/app.css">
+
 </head>
 <body>
 
-<nav>
-    <ul class="nav">
-    <li class="nav-item">
-        <a class="nav-link active" href="/">Home</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/dino">Dino List</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/blog">News</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/blog">Blog</a>
-    </li>
-    </ul>
-</nav>
+@include('partials._navigation')
 
-<div class="container">
-    @include('partials._messages')
-    @yield('content')
-</div>
+@include('partials._messages')
+@yield('content')
+
 
 </body>
 </html>
