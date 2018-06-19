@@ -9,10 +9,10 @@
     <p>Critical: {{$dino->critical}}%</p>
     <p>Rarity: {{$dino->rarity}}</p>
     
-    @if(file_exists("img/dino/" . strtolower($dino->name) . ".png"))
-        <img src="/img/dino/{{strtolower($dino->name)}}.png" alt="" style="width:400px; height:400px;">
+    @if( file_exists("img/dino/" . strtolower(str_replace(' ', '', $dino->name)) . ".png"))
+        <img style="width:150px; height:175px;" src="/img/dino/{{strtolower(str_replace(' ', '', $dino->name))}}.png" alt="">
     @else
-        <img src="/img/dino/none.png" alt="" style="width:400px; height:400px;">
+        <img style="width:150px; height:175px;" src="/img/dino/none.png" alt="">
     @endif
     <br><br>
    
