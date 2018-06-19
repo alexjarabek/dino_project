@@ -28,6 +28,8 @@ class IndexController extends Controller
             array_push($damage_a, round($damage));
         }
 
+        
+
         return view('index', [
             'team' => $team,
             'health' => $health_a,

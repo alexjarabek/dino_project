@@ -108,8 +108,9 @@ class DinoController extends Controller
 
 
         public function edit($id)
-    {
-        //
+    {       
+        $dino = DB::table('dinos')->where('id', $id)->first();
+        return view("dino/edit")->with('dino', $dino);
     }
 
     

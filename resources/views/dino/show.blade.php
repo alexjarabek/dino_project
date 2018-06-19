@@ -9,8 +9,11 @@
     <p>Critical: {{$dino->critical}}%</p>
     <p>Rarity: {{$dino->rarity}}</p>
 
-    <img src="/img/dino/{{strtolower($dino->name)}}.png" alt="" style="width:400px; height:400px;">
-
+    @if(file_exists("img/dino" . strtolower($dino->name) . ".png"))
+        <img src="/img/dino/{{strtolower($dino->name)}}.png" alt="" style="width:400px; height:400px;">
+    @else
+        <img src="/img/dino/none.png" alt="" style="width:400px; height:400px;">
+    @endif
     <br><br>
    
 
