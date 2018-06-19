@@ -3,9 +3,9 @@
 @section('content')
     <h1>The Current Dream Team</h1>
             @for ($i = 0; $i < 8; $i++)
-                <div class="card" style="width:18rem; float:left;">
-                    @if( file_exists("img/dino/" . strtolower($team[$i]->name) . ".png"))
-                        <img class="card-img-top" src="/img/dino/{{strtolower($team[$i]->name)}}.png" alt="">
+                <div class="card" style="width:25%; float:left;">
+                    @if( file_exists("img/dino/" . strtolower(str_replace(' ', '', $team[$i]->name)) . ".png"))
+                        <img class="card-img-top" src="/img/dino/{{strtolower(str_replace(' ', '', $team[$i]->name))}}.png" alt="">
                     @else
                         <img class="card-img-top" src="/img/dino/none.png" alt="">
                     @endif

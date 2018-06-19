@@ -6,6 +6,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Dino;
+use Illuminate\Support\Facades\Validator;
+use Redirect;
+use Session;
 
 class DinoController extends Controller
 {
@@ -13,8 +16,14 @@ class DinoController extends Controller
     public function index()
     {
         $data = DB::table('dinos')->get();
+        $amount = 0;
+        foreach ($data as $dino){
+            if($dino->dream_team_status == 1){
+                $amount++;
+            }
+        }
 
-        return view('dino/index', ['data' => $data]);
+        return view('dino/index', ['data' => $data, 'amount' => $amount]);
     }
 
     
@@ -107,7 +116,7 @@ class DinoController extends Controller
     }
 
 
-        public function edit($id)
+    public function edit($id)
     {       
         $dino = DB::table('dinos')->where('id', $id)->first();
         return view("dino/edit")->with('dino', $dino);
@@ -116,12 +125,20 @@ class DinoController extends Controller
     
     public function update(Request $request, $id)
     {
-        //
+        
+        $dino = Dino::find($id);
+        $dino->dream_team_status = $request->dream_team_status;
+        $dino->save();
+
+        Session::flash('success', 'Updated');
+        return Redirect::to('dino');
     }
 
    
     public function destroy($id)
     {
         //
+
     }
+
 }
