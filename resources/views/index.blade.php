@@ -2,33 +2,67 @@
 
 @section('content')
 
-    <div id="banner">
-        <img src="/img/banner.png" alt="">
-    </div>
+    <div id="index-grid">
+        <div class="dino-title">
+            Current Dream Team
+        </div>
+        
+        @for ($i = 0; $i < 8; $i++)
+            <div class="dino-tile" >
+                <div class="dino-grid">
+                    
+                    @if( file_exists("img/dino/" . strtolower(str_replace(' ', '', $team[$i]->name)) . ".png"))
+                        <img src="/img/dino/{{strtolower(str_replace(' ', '', $team[$i]->name))}}.png" alt="">
+                    @else
+                        <img src="/img/dino/none.png" alt="">
+                    @endif
 
-    <h1>The Current Dream Team</h1>
-    <div class="container">
-            @for ($i = 0; $i < 8; $i++)
-            <div class="card" style="width:25%; float:left;">
-                @if( file_exists("img/dino/" . strtolower(str_replace(' ', '', $team[$i]->name)) . ".png"))
-                    <img class="card-img-top" src="/img/dino/{{strtolower(str_replace(' ', '', $team[$i]->name))}}.png" alt="">
-                @else
-                    <img class="card-img-top" src="/img/dino/none.png" alt="">
-                @endif
-                <div class="card-body">
-                    <h5 class="card-title"><a href="/dino/{{$team[$i]->id}}">{{$team[$i]->name}}</a></h5>
-                    <p>Current Level: {{$team[$i]->current_level}}</p>
-                    <ul>
-                        <li>Health: {{$health[$i]}}</li>
-                        <li>Armor: {{$team[$i]->armor}}%</li>
-                        <li>Damage: {{$damage[$i]}}</li>
-                        <li>Speed: {{$team[$i]->speed}}</li>
-                        <li>Critical: {{$team[$i]->critical}}%</li>
-                    </ul>
+                    <div class="title">
+                            <strong>{{$team[$i]->name}}</strong>
+                    </div>
+
+                    <div class="stats">
+                        <ul>
+                            <li>Health: {{$health[$i]}}</li>
+                            <li>Armor: {{$team[$i]->armor}}%</li>
+                             <li>Damage: {{$damage[$i]}}</li>
+                            <li>Speed: {{$team[$i]->speed}}</li>
+                            <li>Critical: {{$team[$i]->critical}}%</li>
+                        </ul>
+                    </div>
+
+                    <div class="current-level">
+                        <div class="title">Current Level</div>
+                        <div class="value">{{$team[$i]->current_level}}</div>
+                    </div>
+    
                 </div>
+                
             </div>
         @endfor
+
+        <div class="blog-title">
+                Recent Blog Posts
+        </div>
+        <div class="blog-tile-1">
+                <h1>Dummy Title</h1>
+                <p>Dummy Text</p>
+                
+        </div>
+        <div class="blog-tile-2">
+                hello
+        </div>
+        <div class="blog-tile-3">
+                hello
+        </div>
+
+        <div class="contact-card-1">
+            Contact card one
+        </div>
+
+        <div class="contact-card-2">
+            contact card two
+        </div>
     </div>
-            
         
 @endsection
